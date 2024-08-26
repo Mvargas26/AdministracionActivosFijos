@@ -1,0 +1,48 @@
+﻿@model Models.FuncionarioModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/css/loginStyle.css" />
+</head>
+<body>
+
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <h2>¡Bienvenido a su Sistema de administración de activos!</h2>
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                     class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <h4>Ingrese sus credenciales:</h4>
+                <form asp-action="validarUser">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="correoFuncionario" class="control-label">Correo</label>
+                        <input asp-for="correoFuncionario" class="form-control" required />
+                        <span asp-validation-for="correoFuncionario" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="password" class="control-label">Contraseña</label>
+                        <input asp-for="password" class="form-control" type="password" required/>
+                        <span asp-validation-for="password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Entrar" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<br />
+@if (TempData["mensajeError"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["mensajeError"]
+    </div>
+}
+</html>

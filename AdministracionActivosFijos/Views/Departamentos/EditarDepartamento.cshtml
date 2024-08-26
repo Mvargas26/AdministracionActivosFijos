@@ -1,0 +1,35 @@
+﻿@model Models.DepartamentoModel
+
+@{
+    ViewData["Title"] = "EditarDepartamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Editar Departamento</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditarDepartamento">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="idDepartamento" class="control-label"></label>
+                <input asp-for="idDepartamento" class="form-control" readonly/>
+                <span asp-validation-for="idDepartamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departamento" class="control-label"></label>
+                <input asp-for="departamento" class="form-control" />
+                <span asp-validation-for="departamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver</a>
+</div>
+

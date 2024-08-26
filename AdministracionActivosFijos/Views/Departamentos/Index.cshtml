@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Models.DepartamentoModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Mantenimiento Departamentos</h1>
+
+<p>
+    <a asp-action="crearDepartamento" type="button" class="btn btn-primary">Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idDepartamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.departamento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idDepartamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.departamento)
+            </td>
+            <td>
+                <td>
+                    <a asp-action="borrarDepartamento" asp-route-id="@item.idDepartamento" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                </td>
+                <td>
+                    <a asp-action="EditarDepartamento" asp-route-id="@item.idDepartamento" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                </td>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

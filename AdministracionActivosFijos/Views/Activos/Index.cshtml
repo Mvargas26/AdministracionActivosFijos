@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Models.ActivoModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Lista de Activos</h1>
+
+<p>
+    <a asp-action="CrearActivo" class="btn btn-primary">Nuevo Activo <i class="fa-solid fa-square-plus fa-beat"></i></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descrip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaCompra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.caracteris)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.costo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idMetDepre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.valorLibros)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.depreAcumulada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.codFuncionario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idTipoActivo)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descrip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaCompra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.caracteris)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.costo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idMetDepre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valorLibros)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.depreAcumulada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.codFuncionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idTipoActivo)
+            </td>
+            <td>
+                    <a asp-action="BorrarActivo" asp-route-id="@item.cod" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+            </td>
+            <td>
+                    <a asp-action="EditarActivo" asp-route-id="@item.cod" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@if (TempData["mensajeError"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["mensajeError"]
+    </div>
+}

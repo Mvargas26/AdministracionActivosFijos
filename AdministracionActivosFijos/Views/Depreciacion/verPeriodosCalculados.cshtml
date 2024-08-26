@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Models.PeriodoDeprecModel>
+
+@{
+    ViewData["Title"] = "verPeriodosCalculados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Sacamos el primer periodo que viene en la lista
+    var primerPeriodoLista = Model.FirstOrDefault();
+    //le capturamos el id para enviarlo a la vista de aprobar
+    var idActivoCapturado = primerPeriodoLista != null ? primerPeriodoLista.idActivo : 0;
+}
+
+<h1>Periodos Calculados de este Activo: </h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idPeriodo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idActivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaFin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idEstado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.depreMensual)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idPeriodo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idActivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idEstado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.depreMensual)
+            </td>
+
+        </tr>
+        }
+
+    </tbody>
+</table>
+<a asp-action="aprobarPrimerPeriodoCalculado" asp-route-id="@idActivoCapturado" class="btn btn-warning">Aprobar Primer Periodo Calculado <i class="fa-solid fa-check fa-beat-fade"></i></a>
+<br />
+<br />
+<div>
+    <a asp-action="selec_ActivoCalcular">Regresar <i class="fa-solid fa-arrow-left-long"></i></a>
+</div>

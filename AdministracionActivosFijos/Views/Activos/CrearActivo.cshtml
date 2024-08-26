@@ -1,0 +1,94 @@
+﻿@model Models.ActivoModel
+
+@{
+    ViewData["Title"] = "CrearActivo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Crear nuevo Activo <i class="fa-solid fa-square-plus fa-beat"></i></h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CrearActivo">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="cod" class="control-label"></label>
+                <input asp-for="cod" class="form-control" />
+                <span asp-validation-for="cod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descrip" class="control-label"></label>
+                <input asp-for="descrip" class="form-control" />
+                <span asp-validation-for="descrip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaCompra" class="control-label"></label>
+                <input asp-for="fechaCompra" class="form-control" type="date" />
+                <span asp-validation-for="fechaCompra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="caracteris" class="control-label"></label>
+                <input asp-for="caracteris" class="form-control" />
+                <span asp-validation-for="caracteris" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="costo" class="control-label"></label>
+                <input asp-for="costo" class="form-control" />
+                <span asp-validation-for="costo" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="idMetDepre" class="control-label"></label>
+                <input asp-for="idMetDepre" class="form-control" />
+                <span asp-validation-for="idMetDepre" class="text-danger"></span>
+            </div> *@
+            @* <div class="form-group">
+                <label asp-for="valorLibros" class="control-label"></label>
+                <input asp-for="valorLibros" class="form-control" />
+                <span asp-validation-for="valorLibros" class="text-danger"></span>
+            </div> *@
+           @*  <div class="form-group">
+                <label asp-for="depreAcumulada" class="control-label"></label>
+                <input asp-for="depreAcumulada" class="form-control" />
+                <span asp-validation-for="depreAcumulada" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="codFuncionario" class="control-label"></label>
+                <select asp-for="codFuncionario" class="form-control">
+                    @foreach (var func in (List<Models.FuncionarioModel>)ViewData["lsResponsables"])
+                    {
+                        <option value="@func.idFuncionario">@func.idFuncionario - @func.nombre @func.apellido1</option>
+                    }
+                </select>
+                <span asp-validation-for="codFuncionario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idTipoActivo" class="control-label"></label>
+                <select asp-for="idTipoActivo" class="form-control">
+                    @foreach (var tipoAct in (List<Models.TipoActivoModel>)ViewData["lsTiposAct"])
+                    {
+                        <option value="@tipoAct.idTipoAct">@tipoAct.tipoAct</option>
+                    }
+                </select>
+                <span asp-validation-for="idTipoActivo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <br />
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <br />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <br />
+    <a asp-action="Index">Regresar</a>
+    <br />
+</div>
+<br />
+<br />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

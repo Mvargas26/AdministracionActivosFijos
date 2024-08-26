@@ -1,0 +1,92 @@
+﻿@model Models.FuncionarioModel
+@using Models
+
+@{
+    ViewData["Title"] = "CrearFuncionario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Crear nuevo Funcionario</h1>
+
+<hr />
+<div class="row">
+    <p >
+        Tome en cuenta lo siguiente:
+        <br><strong>• La contraseña debe tener al menos entre 8 y 16 caracteres.</strong>
+        <br><strong>• Al menos un dígito.</strong>
+        <br><strong>• Al menos una minúscula.</strong>
+        <br><strong>• Al menos una mayúscula.</strong>
+        <br><strong>• Al menos un carácter no alfanumérico.</strong>
+    </p>
+</div>
+@if (TempData["mensajeError"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["mensajeError"]
+    </div>
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CrearFuncionario">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="idFuncionario" class="control-label" >Identificacion</label>
+                <input asp-for="idFuncionario" class="form-control" />
+                <span asp-validation-for="idFuncionario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="correoFuncionario" class="control-label">Correo</label>
+                <input asp-for="correoFuncionario" class="form-control" />
+                <span asp-validation-for="correoFuncionario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label">Contraseña</label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nombre" class="control-label">Nombre</label>
+                <input asp-for="nombre" class="form-control" />
+                <span asp-validation-for="nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apellido1" class="control-label">Primer Apellido</label>
+                <input asp-for="apellido1" class="form-control" />
+                <span asp-validation-for="apellido1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apellido2" class="control-label">Segundo Apellido</label>
+                <input asp-for="apellido2" class="form-control" />
+                <span asp-validation-for="apellido2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idDepartamento" class="control-label">Departamento</label>
+                <select asp-for="idDepartamento" class="form-control">
+                    @foreach (var departamento in (List<DepartamentoModel>)ViewData["Departamentos"])
+                    {
+                        <option value="@departamento.idDepartamento">@departamento.departamento</option>
+                    }
+                </select>
+                <span asp-validation-for="idDepartamento" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label"> 
+                    <input class="form-check-input" asp-for="estado" /> @Html.DisplayNameFor(model => model.estado)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Agregar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver</a>
+</div>
+<br />
+<br />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

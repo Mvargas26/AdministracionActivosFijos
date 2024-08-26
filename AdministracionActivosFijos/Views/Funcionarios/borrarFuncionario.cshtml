@@ -1,0 +1,68 @@
+﻿@model Models.FuncionarioModel
+
+@{
+    ViewData["Title"] = "borrarFuncionario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Borrar Funcionario</h1>
+
+<h3>Esta seguro que desea borrar este usuario?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idFuncionario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idFuncionario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.correoFuncionario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.correoFuncionario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.password)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.apellido1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.apellido1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.apellido2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.apellido2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idDepartamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idDepartamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+    </dl>
+    
+    <form asp-action="borrarFuncionario">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

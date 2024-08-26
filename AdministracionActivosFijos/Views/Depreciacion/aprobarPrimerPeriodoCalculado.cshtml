@@ -1,0 +1,58 @@
+﻿@model Models.PeriodoDeprecModel
+
+@{
+    ViewData["Title"] = "aprobarPrimerPeriodoCalculado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Aprobar Primer Periodo Calculado</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="aprobarPrimerPeriodoCalculado">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="idPeriodo" class="control-label"></label>
+                <input asp-for="idPeriodo" class="form-control" readonly />
+                <span asp-validation-for="idPeriodo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idActivo" class="control-label"></label>
+                <input asp-for="idActivo" class="form-control" readonly />
+                <span asp-validation-for="idActivo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaInicio" class="control-label"></label>
+                <input asp-for="fechaInicio" class="form-control" readonly />
+                <span asp-validation-for="fechaInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaFin" class="control-label"></label>
+                <input asp-for="fechaFin" class="form-control" readonly />
+                <span asp-validation-for="fechaFin" class="text-danger"></span>
+            </div>
+@*             <div class="form-group">
+                <label asp-for="idEstado" class="control-label"></label>
+                <input asp-for="idEstado" class="form-control"  />
+                <span asp-validation-for="idEstado" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="depreMensual" class="control-label"></label>
+                <input asp-for="depreMensual" class="form-control" readonly />
+                <span asp-validation-for="depreMensual" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Aprobar" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<br />
+<div>
+    <a asp-action="selec_ActivoCalcular">Regresar <i class="fa-solid fa-arrow-left-long"></i></a>
+</div>
+<br/>
+<br/>
+

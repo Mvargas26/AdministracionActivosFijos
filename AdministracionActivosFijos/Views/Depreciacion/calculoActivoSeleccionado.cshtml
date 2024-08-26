@@ -1,0 +1,152 @@
+﻿@model Models.ActivoModel
+
+@{
+    ViewData["Title"] = "calculoActivoSeleccionado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Calculo Activo Seleccionado</h1>
+
+
+<h4>Información del activo:</h4>
+<hr />
+<form asp-action="calculoActivoSeleccionado">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+@* Primer Fila *@
+<div class="form-row">
+         <div class="col-md-4 mb-3">
+            <div class="form-group">
+                <label asp-for="cod" class="control-label"></label>
+                <input asp-for="cod" class="form-control" readonly/>
+                <span asp-validation-for="cod" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="form-group">
+                <label asp-for="descrip" class="control-label"></label>
+                <input asp-for="descrip" class="form-control" readonly />
+                <span asp-validation-for="descrip" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="form-group">
+                <label asp-for="fechaCompra" class="control-label"></label>
+                <input asp-for="fechaCompra" class="form-control"  readonly />
+                <span asp-validation-for="fechaCompra" class="text-danger"></span>
+            </div>
+        </div>
+</div>
+@* Segunda Fila *@
+    <div class="form-row">
+        <div class="col-md-3 mb-3">
+            <div class="form-group">
+                <label asp-for="caracteris" class="control-label"></label>
+                <input asp-for="caracteris" class="form-control" readonly />
+                <span asp-validation-for="caracteris" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="form-group">
+                <label asp-for="costo" class="control-label"></label>
+                <input asp-for="costo" class="form-control" readonly />
+                <span asp-validation-for="costo" class="text-danger"></span>
+            </div>
+        </div>
+
+       @*  <div class="col-md-3 mb-3">
+            <div class="form-group">
+                <label asp-for="idMetDepre" class="control-label"></label>
+                <input asp-for="idMetDepre" class="form-control" readonly />
+                <span asp-validation-for="idMetDepre" class="text-danger"></span>
+            </div>
+        </div> *@
+
+        <div class="col-md-3 mb-3">
+            <div class="form-group">
+                <label asp-for="valorLibros" class="control-label"></label>
+                <input asp-for="valorLibros" class="form-control" readonly />
+                <span asp-validation-for="valorLibros" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+@* Tercer Fila *@
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <div class="form-group">
+                <label asp-for="depreAcumulada" class="control-label"></label>
+                <input asp-for="depreAcumulada" class="form-control" readonly />
+                <span asp-validation-for="depreAcumulada" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="form-group">
+                <label asp-for="codFuncionario" class="control-label"></label>
+                <input asp-for="codFuncionario" class="form-control" readonly />
+                <span asp-validation-for="codFuncionario" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="form-group">
+                <label asp-for="idTipoActivo" class="control-label"></label>
+                <input asp-for="idTipoActivo" class="form-control" readonly />
+                <span asp-validation-for="idTipoActivo" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <h4>Opciones del Cálculo:</h4>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <div class="form-group">
+                <label id="labellsPeriodos" class="control-label">Primer Periodo no calculado:</label>
+                <select id="listaPeriodos" name="periodoSeleccionado" class="form-control">
+                    @{
+                        var periodoSinCalc = (Models.PeriodoDeprecModel)ViewData["periodoSinCalc"];
+                    }
+                    <option value="@periodoSinCalc.idPeriodo">
+                         Del @periodoSinCalc.fechaInicio.ToString("MM/yy") al @periodoSinCalc.fechaFin.ToString("MM/yy")
+                        </option>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="form-group">
+                <label for="tipoDepre" class="control-label">Seleccionar método Depreciación:</label>
+                <select name="tipoDepre" class="form-control">
+                    @foreach (var tipoDepre in (List<Models.TipoDeprecModel>)ViewData["listaTipoDepre"])
+                    {
+                        <option value="@tipoDepre.idTipoDepre">@tipoDepre.tipo</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        
+    </div>
+    <p>
+        <input type="submit" value="Calcular" class="btn btn-success" />
+    </p>
+</form>
+<br />
+@if (TempData["alertaMensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["alertaMensaje"]
+    </div>
+}
+<div>
+    <a asp-action="selec_ActivoCalcular">Regresar <i class="fa-solid fa-arrow-left-long"></i></a>
+</div>
+<br />
+<br />
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

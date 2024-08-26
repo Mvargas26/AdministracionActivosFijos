@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @if (TempData["mensaje"] != null)
+    {
+        <div class="">
+            <h1>  @TempData["mensaje"] </h1>
+        </div>
+    }
+</div>
+
+<div style="text-align: center;">
+    <img src="~/img/losandes.jpg" alt="Logo CUC" style="max-width: 40%;">
+</div>

@@ -1,0 +1,88 @@
+﻿@model Models.ActivoModel
+
+@{
+    ViewData["Title"] = "BorrarActivo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Borrar este Activo</h1>
+
+<h3>Seguro que desea eliminar este activo?</h3>
+<div>
+    <h4>ActivoModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cod)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cod)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.descrip)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.descrip)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fechaCompra)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fechaCompra)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.caracteris)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.caracteris)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.costo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.costo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idMetDepre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idMetDepre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.valorLibros)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.valorLibros)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.depreAcumulada)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.depreAcumulada)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.codFuncionario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.codFuncionario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idTipoActivo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idTipoActivo)
+        </dd>
+    </dl>
+    
+    <form asp-action="BorrarActivo">
+        <input type="submit" value="BorrarActivo" class="btn btn-danger" /> |
+        <a asp-action="Index">Regresar</a>
+    </form>
+    <br />
+    @if (TempData["mensajeError"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["mensajeError"]
+        </div>
+    }
+</div>

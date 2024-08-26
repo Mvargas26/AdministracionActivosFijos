@@ -1,0 +1,37 @@
+﻿@model List<string>
+
+
+@{
+    ViewData["Title"] = "acercaDe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div class="alert alert-primary" style="text-align:center">
+        <h1>Acerca De</h1>
+        <div class="alert alert-info" role="alert">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @item
+                            <br />
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <img src="~/img/cuc.webp" alt="Logo CUC" style="max-width: 60%;">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Models.FuncionarioModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Mantenimiento de Funcionarios</h1>
+
+<p>
+    <a asp-action="CrearFuncionario" type="button" class="btn btn-primary">Nuevo Funcionario</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idFuncionario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.correoFuncionario)
+            </th>
+@*             <th>
+                @Html.DisplayNameFor(model => model.password)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellido1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellido2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idDepartamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idFuncionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correoFuncionario)
+            </td>
+@*             <td>
+                @Html.DisplayFor(modelItem => item.password)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido2)
+            </td>
+                <td>
+                    <!-- hacemos match entre los idDepartamento para que muestre el nombre y no el id -->
+                    @{
+                        var departamentoId = item.idDepartamento;
+                        var departamentos = ViewData["Departamentos"] as List<Models.DepartamentoModel>;
+                        var departamento = departamentos?.FirstOrDefault(d => d.idDepartamento == departamentoId);
+                    }
+                    @departamento?.departamento
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                    <a asp-action="borrarFuncionario" asp-route-id="@item.idFuncionario" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+            </td>
+            <td>
+                    <a asp-action="EditarFuncionario" asp-route-id="@item.idFuncionario" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

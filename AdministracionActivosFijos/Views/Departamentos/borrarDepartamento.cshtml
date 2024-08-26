@@ -1,0 +1,37 @@
+﻿@model Models.DepartamentoModel
+
+@{
+    ViewData["Title"] = "borrarDepartamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Borrar Departamento</h1>
+
+<h3>Esta seguro que lo desea eliminar?</h3>
+<div>
+    <h4>DepartamentoModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idDepartamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idDepartamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.departamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.departamento)
+        </dd>
+    </dl>
+    
+    <form asp-action="borrarDepartamento">
+        <input type="submit" value="Borrar" class="btn btn-danger" /> 
+        <br />
+        <br />
+        <a asp-action="Index">volver</a>
+        <br />
+        <br />
+    </form>
+</div>
